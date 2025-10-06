@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0A0E27 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  min-height: 100vh;
+  color: #FFE5F1;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Estrellas animadas de fondo */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #FF1493, transparent),
+    radial-gradient(2px 2px at 60px 70px, #00FFFF, transparent),
+    radial-gradient(1px 1px at 50px 50px, #FFD700, transparent),
+    radial-gradient(1px 1px at 130px 80px, #FF69B4, transparent),
+    radial-gradient(2px 2px at 90px 10px, #9D4EDD, transparent);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  animation: stars-move 20s linear infinite;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes stars-move {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Efectos de neón personalizados */
+.neon-text {
+  text-shadow: 0 0 10px #FF1493, 0 0 20px #FF1493, 0 0 30px #FF1493, 0 0 40px #00FFFF;
+}
+
+.neon-border {
+  box-shadow: 0 0 10px #FF1493, 0 0 20px #FF1493, inset 0 0 10px #FF1493;
+  border: 2px solid #FF1493;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0E27;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF1493, #00FFFF);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF69B4, #4CC9F0);
+}
+
+/* ========== TEMA CLARO ========== */
+.light-theme body {
+  background: linear-gradient(135deg, #E8F4F8 0%, #B8E6F0 25%, #A7D8E8 50%, #7FB3D5 75%, #D4A5FF 100%);
+  color: #1a1a2e;
+}
+
+.light-theme body::before {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #FF1493, transparent),
+    radial-gradient(2px 2px at 60px 70px, #0080FF, transparent),
+    radial-gradient(1px 1px at 50px 50px, #FFB700, transparent),
+    radial-gradient(1px 1px at 130px 80px, #FF69B4, transparent),
+    radial-gradient(2px 2px at 90px 10px, #8B5CF6, transparent);
+  opacity: 0.3;
+}
+
+.light-theme ::-webkit-scrollbar-track {
+  background: #E8F4F8;
+}
+
+.light-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF1493, #0080FF);
+}
+
+.light-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FF69B4, #4CC9F0);
+}
+
+/* Variables CSS para temas dinámicos */
+:root {
+  --bg-darker: #000814;
+  --bg-dark: #0D1B2A;
+  --text-light: #FFE5F1;
+  --text-secondary: #00FFFF;
+}
+
+.light-theme {
+  --bg-darker: #FFFFFF;
+  --bg-dark: #F8FAFC;
+  --text-light: #1E293B;
+  --text-secondary: #0080FF;
+}
+

@@ -1,3 +1,5 @@
+import { getCachedTranslation, setCachedTranslation } from './translationCache';
+
 // Diccionario de traducciones de géneros de anime
 export const genreTranslations: Record<string, string> = {
   'Action': 'Acción',
@@ -92,15 +94,16 @@ export const translateGenre = (genre: string): string => {
   return genreTranslations[genre] || genre;
 };
 
-// Función para traducir texto usando una API de traducción simple
-// Esta es una versión básica, en producción usarías un servicio real como Google Translate API
+// Función para traducir texto usando una API de traducción simple con caché
 export const translateText = async (text: string, targetLang: string = 'es'): Promise<string> => {
-  // Por ahora, retornamos el texto original ya que la API de traducción requiere credenciales
-  // En una implementación real, usarías:
-  // - Google Cloud Translation API
-  // - DeepL API
-  // - LibreTranslate
-  // - MyMemory Translation API (gratis con límites)
+  // Verificar si la traducción ya está en caché
+  const cacheKey = `${text.substring(0, 50)}_${targetLang}`;
+  const cached = getCachedTranslation(cacheKey);
+  
+  if (cached) {
+    console.log('✅ Traducción desde caché');
+    return cached;
+  }
   
   try {
     // Usamos MyMemory Translation API (gratuita con límites)
@@ -115,7 +118,11 @@ export const translateText = async (text: string, targetLang: string = 'es'): Pr
     const data = await response.json();
     
     if (data.responseStatus === 200 && data.responseData?.translatedText) {
-      return data.responseData.translatedText;
+      const translated = data.responseData.translatedText;
+      // Guardar en caché
+      setCachedTranslation(cacheKey, translated);
+      console.log('📝 Traducción guardada en caché');
+      return translated;
     }
     
     return text;

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Anime, AnimeCharacter } from '../types';
 import { translateGenre, translateText } from '../utils/translations';
-import { useState, useEffect } from 'react';
 import AnimeNoteModal from './AnimeNoteModal';
 import { getAnimeNote } from '../utils/animeNotes';
 
@@ -12,24 +11,32 @@ interface AnimeDetailsProps {
   onNoteUpdate?: () => void;
 }
 
-const AnimeDetails: React.FC<AnimeDetailsProps> = ({ anime, characters, onClose, onNoteUpdate }) => {
+const AnimeDetails: React.FC<AnimeDetailsProps> = React.memo(({ anime, characters, onClose, onNoteUpdate }) => {
   const [translatedSynopsis, setTranslatedSynopsis] = useState<string>(anime.synopsis || '');
   const [isTranslating, setIsTranslating] = useState(false);
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [hasNote, setHasNote] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+    
     const translateSynopsis = async () => {
       if (anime.synopsis && anime.synopsis.length > 0) {
         setIsTranslating(true);
         try {
           const translated = await translateText(anime.synopsis, 'es');
-          setTranslatedSynopsis(translated);
+          if (isMounted) {
+            setTranslatedSynopsis(translated);
+          }
         } catch (error) {
           console.error('Error al traducir la sinopsis:', error);
-          setTranslatedSynopsis(anime.synopsis);
+          if (isMounted) {
+            setTranslatedSynopsis(anime.synopsis);
+          }
         } finally {
-          setIsTranslating(false);
+          if (isMounted) {
+            setIsTranslating(false);
+          }
         }
       }
     };
@@ -39,13 +46,23 @@ const AnimeDetails: React.FC<AnimeDetailsProps> = ({ anime, characters, onClose,
     // Verificar si tiene notas
     const note = getAnimeNote(anime.mal_id);
     setHasNote(!!note);
+    
+    return () => {
+      isMounted = false;
+    };
   }, [anime.synopsis, anime.mal_id]);
 
-  const handleNoteUpdate = () => {
+  const handleNoteUpdate = useCallback(() => {
     const note = getAnimeNote(anime.mal_id);
     setHasNote(!!note);
     if (onNoteUpdate) onNoteUpdate();
-  };
+  }, [anime.mal_id, onNoteUpdate]);
+  
+  // Memoizar la lista de personajes principales
+  const mainCharacters = useMemo(() => 
+    characters.slice(0, 12),
+    [characters]
+  );
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 overflow-y-auto animate-fade-in">
@@ -255,11 +272,11 @@ const AnimeDetails: React.FC<AnimeDetailsProps> = ({ anime, characters, onClose,
               )}
 
               {/* Personajes */}
-              {characters.length > 0 && (
+              {mainCharacters.length > 0 && (
                 <div>
                   <h3 className="text-anime-primary font-bold text-xl mb-4">👥 Personajes Principales</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {characters.slice(0, 12).map((char) => (
+                    {mainCharacters.map((char) => (
                       <div
                         key={char.character.mal_id}
                         className="bg-anime-dark/50 rounded-lg overflow-hidden border border-anime-secondary/20 hover:border-anime-accent/50 transition-all"
@@ -268,6 +285,7 @@ const AnimeDetails: React.FC<AnimeDetailsProps> = ({ anime, characters, onClose,
                           src={char.character.images.jpg.image_url}
                           alt={char.character.name}
                           className="w-full h-48 object-cover"
+                          loading="lazy"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = 'https://via.placeholder.com/200x300?text=No+Image';
@@ -299,6 +317,8 @@ const AnimeDetails: React.FC<AnimeDetailsProps> = ({ anime, characters, onClose,
       )}
     </div>
   );
-};
+});
+
+AnimeDetails.displayName = 'AnimeDetails';
 
 export default AnimeDetails;

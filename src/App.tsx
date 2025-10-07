@@ -17,7 +17,6 @@ import { getFavorites } from './utils/favorites';
 import { exportData, importData } from './utils/exportImport';
 import { translateGenre } from './utils/translations';
 import { Theme, getTheme, toggleTheme as toggleThemeUtil, applyTheme } from './utils/theme';
-import { ANIME_GENRES } from './utils/animeGenres';
 import { animeCache } from './utils/animeCache';
 
 function App() {
@@ -267,9 +266,22 @@ function App() {
     return filtered;
   };
 
-  // Obtener géneros disponibles - usar lista completa de géneros
+  // Obtener géneros disponibles desde los animes realmente cargados
   const getAvailableGenres = (): string[] => {
-    return ANIME_GENRES;
+    const genresSet = new Set<string>();
+    
+    // Extraer géneros únicos de todos los animes cargados
+    animes.forEach((anime: Anime) => {
+      if (anime.genres && anime.genres.length > 0) {
+        anime.genres.forEach((genre: { mal_id: number; name: string }) => {
+          const translatedGenre = translateGenre(genre.name);
+          genresSet.add(translatedGenre);
+        });
+      }
+    });
+    
+    // Convertir a array y ordenar alfabéticamente
+    return Array.from(genresSet).sort();
   };
 
   // Manejar cambios en filtros

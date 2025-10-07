@@ -10,7 +10,6 @@ export const animeCache = {
     try {
       localStorage.setItem(CACHE_KEY, JSON.stringify(animes));
       localStorage.setItem(CACHE_TIMESTAMP_KEY, Date.now().toString());
-      console.log(`✅ Caché guardado: ${animes.length} animes`);
     } catch (error) {
       console.error('❌ Error al guardar caché:', error);
     }
@@ -23,19 +22,16 @@ export const animeCache = {
       const timestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
       if (!cachedData || !timestamp) {
-        console.log('📭 No hay caché disponible');
         return null;
       }
 
       const cacheAge = Date.now() - parseInt(timestamp);
       if (cacheAge > CACHE_DURATION) {
-        console.log('⏰ Caché expirado');
         animeCache.clear();
         return null;
       }
 
       const animes = JSON.parse(cachedData);
-      console.log(`✅ Caché cargado: ${animes.length} animes (${Math.round(cacheAge / 1000 / 60)} minutos de antigüedad)`);
       return animes;
     } catch (error) {
       console.error('❌ Error al cargar caché:', error);
@@ -48,7 +44,6 @@ export const animeCache = {
     try {
       localStorage.removeItem(CACHE_KEY);
       localStorage.removeItem(CACHE_TIMESTAMP_KEY);
-      console.log('🗑️ Caché limpiado');
     } catch (error) {
       console.error('❌ Error al limpiar caché:', error);
     }

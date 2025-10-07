@@ -101,7 +101,6 @@ export const translateText = async (text: string, targetLang: string = 'es'): Pr
   const cached = getCachedTranslation(cacheKey);
   
   if (cached) {
-    console.log('✅ Traducción desde caché');
     return cached;
   }
   
@@ -121,7 +120,6 @@ export const translateText = async (text: string, targetLang: string = 'es'): Pr
       const translated = data.responseData.translatedText;
       // Guardar en caché
       setCachedTranslation(cacheKey, translated);
-      console.log('📝 Traducción guardada en caché');
       return translated;
     }
     

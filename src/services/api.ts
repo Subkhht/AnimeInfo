@@ -48,7 +48,6 @@ export const jikanAPI = {
       }
       
       const data: JikanPaginatedResponse<Anime> = await response.json();
-      console.log('Search Anime Response:', data);
       return data.data;
     } catch (error) {
       console.error('Error en searchAnime:', error);

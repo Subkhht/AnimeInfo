@@ -1,53 +1,92 @@
-# 🌸 AnimeI### 📺 Información de Animes
-- **Búsqueda avanzada**: Encuentra cualquier anime por nombre
-- **Detalles completos**: Puntuación, sinopsis traducida al español, estado de emisión, episodios
-- **Personajes principales**: Lista de personajes con roles y actores de voz
-- **Información adicional**: Géneros traducidos, estudios, ranking, popularidad
-- **Estado de emisión**: Indica si el anime está en emisión actualmente
-- **Traducciones automáticas**: Sinopsis y géneros en español
+# � AnimeInfo - Tu Guía Definitiva de Anime
 
-### 👤 Información de Personajes
-- **Búsqueda de personajes**: Encuentra personajes por nombre
-- **Biografía detallada**: Historia completa del personaje traducida al español
-- **Estadísticas**: Número de favoritos en MyAnimeList
-- **Apodos**: Todos los nombres alternativos del personaje
-- **Imágenes de alta calidad**: Visualización atractiva
-- **Traducción automática**: Biografías en españolde Información de Animes y Personajes 🌸
-
-Una aplicación web moderna y hermosa para explorar información detallada de animes y personajes, construida con React, TypeScript, Vite y TailwindCSS.
-
-![AnimeInfo Preview](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react)
+[![PWA Ready](https://img.shields.io/badge/PWA-Ready-success?style=for-the-badge&logo=pwa)](https://subkhht.github.io/AnimeInfo)
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6.3-3178C6?style=for-the-badge&logo=typescript)
 ![Vite](https://img.shields.io/badge/Vite-5.4.11-646CFF?style=for-the-badge&logo=vite)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.16-38B2AC?style=for-the-badge&logo=tailwind-css)
 
-## ✨ Características
+> Una aplicación web profesional y moderna para descubrir, explorar y organizar tus animes favoritos. Con PWA, notificaciones, caché inteligente y mucho más.
 
-### � Información de Animes
-- **Búsqueda avanzada**: Encuentra cualquier anime por nombre
-- **Detalles completos**: Puntuación, sinopsis, estado de emisión, episodios
-- **Personajes principales**: Lista de personajes con roles y actores de voz
-- **Información adicional**: Géneros, estudios, ranking, popularidad
-- **Estado de emisión**: Indica si el anime está en emisión actualmente
+🌐 **[Ver Demo en Vivo](https://subkhht.github.io/AnimeInfo)** | 📱 **Instalable como App**
 
-### 👤 Información de Personajes
-- **Búsqueda de personajes**: Encuentra personajes por nombre
-- **Biografía detallada**: Historia completa del personaje
-- **Estadísticas**: Número de favoritos en MyAnimeList
-- **Apodos**: Todos los nombres alternativos del personaje
-- **Imágenes de alta calidad**: Visualización atractiva
+---
 
-### 🎨 Diseño y UX
-- **Diseño Temático**: Interfaz hermosa con gradientes y animaciones suaves
-- **Responsive**: Funciona perfectamente en todos los dispositivos
-- **Modales interactivos**: Visualización detallada con scroll
-- **Animaciones fluidas**: Transiciones y efectos visuales atractivos
-- **Top Animes**: Descubre los animes más populares
-- **Interfaz en español**: Toda la interfaz y contenido traducido
+## ✨ Características Principales
 
-## 🌐 Traducción
+### 🔍 **Búsqueda y Exploración**
+- 🎯 **Búsqueda avanzada** de animes y personajes
+- 🔝 **2000 animes** con carga progresiva (250 iniciales → 2000 totales)
+- 🎭 **Filtros dinámicos** por género, puntuación, estado
+- 📊 **Ordenamiento** por score, popularidad, título, episodios
+- 🌐 **Traducción automática** al español (sinopsis, géneros)
 
-La aplicación incluye un sistema de traducción automática que convierte:
+### 📱 **PWA (Progressive Web App)** ⭐ NUEVO
+- 📲 **Instalable** como aplicación nativa
+- 🔌 **Funciona offline** con Service Worker
+- 🎨 **Splash screen** personalizado
+- ⚡ **Acceso rápido** desde home screen
+- 🚀 **Shortcuts**: Buscar y Favoritos
+
+### 🔔 **Sistema de Notificaciones** ⭐ NUEVO
+- ✅ **Notificaciones toast** profesionales
+- ❤️ Feedback al agregar/quitar favoritos
+- 📤 Confirmación de exportar/importar datos
+- 🎨 **Estilos personalizados** con gradientes anime
+
+### ❤️ **Sistema de Favoritos**
+- 💾 **Guardar animes** favoritos
+- 🔴 **Filtro de emisión** (separa animes en emisión)
+- 📋 **Vista grid/lista** personalizable
+- 📤 **Exportar/importar** datos (JSON)
+
+### � **Notas Personalizadas**
+- ✍️ **Añadir notas** a cualquier anime
+- 🎨 **Editor rico** con formato
+- 💾 **Guardado automático** en localStorage
+- 🗑️ **Gestión completa** (crear, editar, eliminar)
+
+### 📊 **Estadísticas y Análisis**
+- 📈 **Dashboard completo** con métricas
+- 🎭 **Géneros favoritos** con gráficos
+- ⭐ **Rating promedio** de favoritos
+- 📺 **Total de episodios** acumulados
+
+### 🎬 **Detalles Completos**
+- 🖼️ **Imágenes HD** y trailers integrados
+- 👥 **Personajes principales** (hasta 12)
+- 🏢 **Estudios de animación**
+- 🌟 **Ranking y popularidad** en MyAnimeList
+- 📅 **Fechas de emisión** y estado
+
+### 💀 **Loading Skeletons** ⭐ NUEVO
+- ⚡ **Percepción de carga** más rápida
+- 🎨 **Diseño que imita** las tarjetas reales
+- ✨ **Animación suave** de pulse
+
+### 🛡️ **Error Boundary** ⭐ NUEVO
+- 🔒 **Captura todos los errores** de React
+- 🎨 **Pantalla de error** profesional
+- 🔄 **Recuperación fácil** con botones de acción
+- 🐛 **Debug info** en modo desarrollo
+
+### 🎨 **Diseño y UX**
+- 🌈 **Tema oscuro/claro** con transiciones suaves
+- 🎭 **Estética anime** con gradientes neón
+- ⭐ **Fondo animado** con estrellas flotantes
+- 📱 **Responsive** en todos los dispositivos
+- 🎯 **Animaciones CSS** mejoradas y profesionales
+
+### ⚡ **Rendimiento**
+- 💾 **Caché inteligente** (24 horas)
+- 🔄 **Carga progresiva** para miles de animes
+- 🚀 **Optimización de imágenes** con lazy loading
+- 💬 **Caché de traducciones** en memoria
+- ⚛️ **React.memo** para evitar re-renders
+
+---
+
+## 🚀 Tecnologías
 - ✅ Sinopsis de animes de inglés a español
 - ✅ Biografías de personajes de inglés a español
 - ✅ Géneros de anime con traducciones localizadas

@@ -1,0 +1,48 @@
+{
+  "name": "AnimeInfo - Tu Guía de Anime",
+  "short_name": "AnimeInfo",
+  "description": "Descubre, explora y organiza tus animes favoritos. Búsqueda avanzada, favoritos, notas personalizadas y mucho más.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0E27",
+  "theme_color": "#FF1493",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["entertainment", "anime", "media"],
+  "screenshots": [
+    {
+      "src": "/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Buscar Anime",
+      "short_name": "Buscar",
+      "description": "Buscar animes rápidamente",
+      "url": "/?search=true",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mis Favoritos",
+      "short_name": "Favoritos",
+      "description": "Ver tus animes favoritos",
+      "url": "/?favorites=true",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

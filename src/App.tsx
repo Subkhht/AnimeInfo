@@ -6,7 +6,7 @@ import CharacterCard from './components/CharacterCard';
 import AnimeDetails from './components/AnimeDetails';
 import CharacterDetails from './components/CharacterDetails';
 import SearchBar from './components/SearchBar';
-import LoadingSpinner from './components/LoadingSpinner';
+import SkeletonCard from './components/SkeletonCard';
 import FilterBar, { FilterOptions } from './components/FilterBar';
 import StatsModal from './components/StatsModal';
 import ScrollToTop from './components/ScrollToTop';
@@ -18,6 +18,7 @@ import { exportData, importData } from './utils/exportImport';
 import { translateGenre } from './utils/translations';
 import { Theme, getTheme, toggleTheme as toggleThemeUtil, applyTheme } from './utils/theme';
 import { animeCache } from './utils/animeCache';
+import { notify } from './utils/notifications';
 
 function App() {
   const [animes, setAnimes] = useState<Anime[]>([]);
@@ -450,7 +451,12 @@ function App() {
 
   // Manejar exportación
   const handleExport = () => {
-    exportData();
+    try {
+      exportData();
+      notify.dataExported();
+    } catch (error) {
+      notify.error('Error al exportar datos');
+    }
   };
 
   // Manejar importación
@@ -462,9 +468,10 @@ function App() {
     if (result.success) {
       setError(null);
       loadFavorites();
-      alert(result.message);
+      notify.dataImported();
     } else {
       setError(result.message);
+      notify.error('Error al importar datos');
     }
 
     // Limpiar el input
@@ -594,9 +601,11 @@ function App() {
           </div>
         )}
 
-        {/* Spinner de carga */}
+        {/* Spinner de carga o Skeleton */}
         {isLoading && !selectedAnime && !selectedCharacter && (
-          <LoadingSpinner message="Buscando en la base de datos de MyAnimeList..." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <SkeletonCard count={viewMode === 'grid' ? 24 : 12} />
+          </div>
         )}
 
         {/* Sección de Favoritos */}
